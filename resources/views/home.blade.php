@@ -256,7 +256,7 @@
     <div class="astronaut-wrapper bubble-delay-0" style="top: 20%; left: 10%">
     <img src="{{ asset('img/astronot.png') }}" class="astronaut" />
       <div class="speech-bubble auto-bubble">
-        Tidur, untuk menyambut hari esok!
+        Tidur, untuk menyambut hari esok! hari
       </div>
 </div>
 
