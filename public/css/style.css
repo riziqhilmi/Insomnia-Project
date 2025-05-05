@@ -1,0 +1,457 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Arial", sans-serif;
+}
+
+body {
+    background-color: #000014;
+    overflow-x: hidden; /* biar scroll horizontal tetap dicegah */
+    color: white;
+    position: relative;
+    font-family: "Arial", sans-serif;
+}
+
+/* Header */
+header {
+    background-color: rgba(0, 0, 50, 0.2); /* transparan */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* untuk Safari */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 30px;
+    position: relative;
+    z-index: 2;
+    height: 60px;
+    border-radius: 12px;
+}
+
+/* Logo tetap di kiri */
+.logo {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #6ff3ff;
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Nav di tengah */
+nav {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+nav ul {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    align-items: center;
+}
+
+/* Link navigasi */
+nav a {
+    color: #ffffffcc;
+    text-decoration: none;
+    font-size: 0.95rem;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* Efek aktif/hover */
+nav a.active,
+nav a:hover {
+    font-weight: bold;
+    border-bottom: 2px solid #6ff3ff;
+    color: #6ff3ff;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #6ff3ff;
+    transition: 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+nav a.active {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Login di kanan */
+.login-btn {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #6ff3ff;
+    color: #000014;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    background: white;
+    color: #000014;
+}
+
+/* Hero */
+.hero {
+    height: 100vh;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 80vh;
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(90deg, #ffffff, #6ff3ff, #ffffff);
+    background-size: 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shineText 3s infinite linear;
+}
+
+@keyframes shineText {
+    0% {
+        background-position: -100% 0;
+    }
+    100% {
+        background-position: 100% 0;
+    }
+}
+
+.cta-btn {
+    padding: 10px 25px;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.cta-btn:hover {
+    background-color: white;
+}
+
+/* Floating Planet */
+.planet {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle at 30% 30%, #6ff3ff, #0c1e40);
+    border-radius: 50%;
+    bottom: 100px;
+    left: 80px;
+    z-index: 1;
+    box-shadow: 0 0 20px #6ff3ff;
+    animation: floatPlanet 6s ease-in-out infinite;
+}
+
+@keyframes floatPlanet {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Stars Background */
+.stars span {
+    position: absolute;
+    display: block;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: twinkleStar linear infinite;
+    box-shadow: 0 0 8px white;
+}
+
+/* Twinkle Animation */
+@keyframes twinkleStar {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-10px) scale(1.3);
+    }
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.3;
+    }
+}
+
+.shooting-stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* wrapper menentukan arah bintang jatuh */
+.shooting-star-wrapper {
+    position: absolute;
+    top: 0;
+    left: 20%;
+    transform: rotate(45deg);
+    animation: moveStar 10s linear infinite;
+    animation-delay: 5s;
+}
+
+/* ini elemen visualnya */
+.shooting-star {
+    width: 2px;
+    height: 100px;
+    background: linear-gradient(180deg, white, rgba(255, 255, 255, 0));
+    opacity: 0;
+    border-radius: 50%;
+    animation: fadeStar 10s linear infinite;
+    animation-delay: 5s;
+    box-shadow: 0 0 8px white;
+    transform: rotate(90deg);
+}
+
+@keyframes moveStar {
+    0% {
+        transform: rotate(45deg) translateX(0);
+    }
+    100% {
+        transform: rotate(45deg) translateX(800px);
+    }
+}
+
+@keyframes fadeStar {
+    0% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.edukasi {
+    padding: 100px 20px;
+    background: linear-gradient(
+        to bottom right,
+        rgba(10, 10, 30, 0.6),
+        rgba(20, 20, 40, 0.6)
+    );
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    z-index: 2;
+    position: relative;
+    text-align: center;
+    animation: fadeUp 1s ease-out both;
+}
+
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.edukasi .content {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(111, 243, 255, 0.2);
+}
+
+.edukasi h2 {
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    color: #6ff3ff;
+    text-shadow: 0 0 8px #6ff3ff;
+}
+
+.edukasi p,
+.edukasi li {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 15px;
+    color: #e0e0e0;
+}
+
+.edukasi ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 20px 0;
+}
+
+.edukasi li::before {
+    content: "🌙 ";
+    font-size: 1.2rem;
+}
+
+.edukasi h3 {
+    color: #89e0ff;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.astronaut {
+    position: absolute;
+    width: 80px;
+    z-index: 2;
+    animation: floatAstronaut 8s ease-in-out infinite;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+@keyframes floatAstronaut {
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+}
+
+.astronaut-wrapper {
+    position: absolute;
+    z-index: 2;
+}
+
+.speech-bubble {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    color: #000014;
+    padding: 8px 12px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* segitiga ekor bubble */
+.speech-bubble::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: #ffffff transparent transparent transparent;
+}
+
+.astronaut-wrapper:hover .speech-bubble {
+    opacity: 1;
+}
+
+@keyframes showBubble {
+    0%,
+    90%,
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(0px) scale(0.9);
+    }
+    10%,
+    30% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-10px) scale(1);
+    }
+}
+
+@keyframes showBubbleSequence {
+    0%,
+    25%,
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.95);
+    }
+    10% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-10px) scale(1);
+    }
+}
+
+/* Bubble akan muncul setiap 6 detik */
+.auto-bubble {
+    animation: showBubbleSequence 18s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* Delay bergantian tiap bubble */
+.bubble-delay-0 .auto-bubble {
+    animation-delay: 0s;
+}
+.bubble-delay-1 .auto-bubble {
+    animation-delay: 6s;
+}
+.bubble-delay-2 .auto-bubble {
+    animation-delay: 12s;
+}
+
+.moon {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    width: 120px;
+    z-index: 1;
+    animation: floatMoon 10s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes floatMoon {
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
