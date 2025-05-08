@@ -16,7 +16,6 @@
     </head>
     <body class="bg-gray-900 text-white">
     <div class="min-h-screen bg-gray-800">
-        @include('layouts.navigation')
 
         <!-- Page Heading -->
         @if (isset($header))
