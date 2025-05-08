@@ -63,12 +63,16 @@
         </button>
       </div>
 
-      <!-- Forgot Password Link -->
-      <div class="mt-4 text-center">
-        <a href="{{ route('password.request') }}" class="text-sm text-gray-400 hover:text-blue-500">
-          Forgot your password?
-        </a>
-      </div>
+<!-- Forgot Password + Register -->
+<div class="mt-4 flex justify-between text-sm text-gray-400">
+  <a href="{{ route('password.request') }}" class="hover:text-blue-500">
+    Forgot your password?
+  </a>
+  <a href="{{ route('register') }}" class="hover:text-blue-500">
+    Don't have an account? Register
+  </a>
+</div>
+
     </form>
   </div>
 </body>
