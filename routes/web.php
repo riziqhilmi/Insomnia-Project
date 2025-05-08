@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,5 +46,28 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/register', function () {
+    return view('register');
+})->name('register');
+
+Route::get('/register', [RegisteredUserController::class, 'create'])
+    ->middleware('guest')
+    ->name('register');
+
+Route::post('/register', [RegisteredUserController::class, 'store'])
+    ->middleware('guest');
+
+Route::get('/master', function () {
+        return view('auth.master');
+    })->name('master');
+    
+Route::get('/predision', function () {
+        return view('auth.predision');
+    })->name('predision');
+    
+Route::get('/visualization', function () {
+        return view('auth.visualization');
+    })->name('visualization');
 
 require __DIR__.'/auth.php';
