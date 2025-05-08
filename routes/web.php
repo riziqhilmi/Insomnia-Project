@@ -58,4 +58,16 @@ Route::get('/register', [RegisteredUserController::class, 'create'])
 Route::post('/register', [RegisteredUserController::class, 'store'])
     ->middleware('guest');
 
+Route::get('/master', function () {
+        return view('auth.master');
+    })->name('master');
+    
+Route::get('/predision', function () {
+        return view('auth.predision');
+    })->name('predision');
+    
+Route::get('/visualization', function () {
+        return view('auth.visualization');
+    })->name('visualization');
+
 require __DIR__.'/auth.php';

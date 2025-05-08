@@ -4,8 +4,8 @@
     </div>
     <nav class="p-4 space-y-2">
         <a href="{{ route('dashboard') }}" class="block px-4 py-2 rounded hover:bg-gray-700">Dashboard</a>
-        <a href="#" class="block px-4 py-2 rounded hover:bg-gray-700">Data Master</a>
-        <a href="#" class="block px-4 py-2 rounded hover:bg-gray-700">Predision</a>
-        <a href="#" class="block px-4 py-2 rounded hover:bg-gray-700">Visualisasi</a>
+        <a href="{{ route('master') }}" class="block px-4 py-2 rounded hover:bg-gray-700">Data Master</a>
+        <a href="{{ route('predision') }}" class="block px-4 py-2 rounded hover:bg-gray-700">Predision</a>
+        <a href="{{ route('visualization') }}" class="block px-4 py-2 rounded hover:bg-gray-700">Visualisasi</a>
     </nav>
 </div>
