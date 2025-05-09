@@ -1,20 +1,18 @@
 @php use Illuminate\Support\Facades\Route; @endphp
 
-
+<!-- Toggle Sidebar Button (di luar sidebar) -->
+<button id="toggle-btn" onclick="toggleSidebar(event)"
+    class="fixed top-1/2 transform -translate-y-1/2 bg-gray-900 text-white p-2 rounded-full shadow-lg focus:outline-none z-50 transition-all duration-300">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+</button>
 
 <!-- Sidebar -->
 <div id="sidebar" class="fixed inset-y-0 left-0 bg-gradient-to-b from-gray-900 to-gray-800 text-white shadow-lg z-40 w-64 transition-all duration-300 flex flex-col">
     <div class="p-4 text-2xl font-extrabold text-blue-400 border-b border-gray-700">
         <span id="brand-text" class="transition-all duration-300">INSOMNIC</span>
     </div>
-
-<!-- Toggle Sidebar Button -->
-<button id="toggle-btn" onclick="toggleSidebar(event)"
-    class="absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2 bg-gray-900 text-white p-2 rounded-full shadow-lg focus:outline-none z-50 transition-all duration-300">
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-    </svg>
-</button>
 
     <nav class="p-4 space-y-2 flex-1">
         <a href="{{ route('dashboard') }}"
@@ -87,6 +85,10 @@ function applySidebarState() {
             el.classList.remove('hidden');
             setTimeout(() => el.classList.remove('opacity-0'), 10);
         }
+        const toggleBtn = document.getElementById('toggle-btn');
+if (toggleBtn) {
+    toggleBtn.style.left = isOpen ? '244px' : '68px';
+}
     });
 }
 
@@ -95,3 +97,35 @@ window.onload = function() {
     applySidebarState();
 };
 </script>
+
+<style>
+    #toggle-btn {
+    z-index: 50; /* lebih tinggi dari z-index: 0 pada ::before dan z-index: 40 pada #sidebar */
+}
+
+/* Efek bintang */
+#sidebar::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: transparent url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="1" fill="white" opacity="0.8"/><circle cx="30" cy="50" r="1.2" fill="white" opacity="0.7"/><circle cx="70" cy="80" r="1" fill="white" opacity="0.6"/></svg>') repeat;
+    animation: starfield 60s linear infinite;
+    z-index: 0;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* Animasi gerak bintang */
+@keyframes starfield {
+    0% { background-position: 0 0; }
+    100% { background-position: -1000px 1000px; }
+}
+
+/* Pastikan konten sidebar tetap di atas */
+#sidebar > * {
+    overflow: visible;
+    position: relative;
+    z-index: 1;
+}
+</style>
