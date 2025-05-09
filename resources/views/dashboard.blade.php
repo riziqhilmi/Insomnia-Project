@@ -1,9 +1,10 @@
 <x-app-layout>
     @include('auth.sidebar')
 
-    @include('layouts.navigation') {{-- Navbar di atas konten utama, geser kanan pakai ml-64 --}}
-    
-    <div class="ml-64 min-h-screen bg-gray-900 py-12 px-8 text-white">
+    @include('layouts.navigation') {{-- Navbar di atas konten utama --}}
+
+    <!-- Konten Utama yang Bisa Bergeser -->
+    <div id="main-content" class="ml-64 transition-all duration-300 min-h-screen bg-gray-900 py-12 px-8 text-white">
         <div class="bg-gray-800 p-6 rounded shadow-lg mb-6">
             <h1 class="text-4xl font-bold text-blue-400 mb-2">Dashboard</h1>
             <p class="text-gray-300">Selamat datang kembali, <strong>{{ Auth::user()->name }}</strong>.</p>
