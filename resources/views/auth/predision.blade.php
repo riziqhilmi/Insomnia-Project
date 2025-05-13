@@ -1,10 +1,8 @@
 <x-app-layout>
     @include('auth.sidebar')
-
-    @include('layouts.navigation') {{-- Navbar di atas konten utama, geser kanan pakai ml-64 --}}
-
+    @include('layouts.navigation')
+    
     <style>
-        /* Efek bintang untuk main-content */
         #main-content::before {
             content: "";
             position: absolute;
@@ -22,7 +20,6 @@
             100% { background-position: -1000px 1000px; }
         }
 
-        /* Pastikan konten tetap di atas efek */
         #main-content > * {
             position: relative;
             z-index: 1;
@@ -34,7 +31,5 @@
             <h1 class="text-3xl font-bold text-blue-400">Prediksi</h1>
             <p class="mt-2 text-gray-300">Halaman ini menampilkan hasil prediksi berdasarkan data yang tersedia.</p>
         </div>
-
-        {{-- Tambahkan konten prediksi di sini --}}
     </div>
 </x-app-layout>

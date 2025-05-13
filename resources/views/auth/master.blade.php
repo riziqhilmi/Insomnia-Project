@@ -34,6 +34,75 @@
             <h1 class="text-3xl font-bold text-blue-400">Data Master</h1>
             <p class="mt-2 text-gray-300">Halaman ini berisi pengelolaan data master.</p>
         </div>
-        {{-- Tambahkan konten data master di sini --}}
+<div class="bg-gray-800 p-6 rounded shadow mb-6">
+    <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-semibold text-white">Tabel Data Master Predision</h2>
+        <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
+            Tambah Data
+        </a>
+    </div>
+
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-gray-900 text-white border border-gray-700 rounded shadow">
+            <thead class="bg-gray-700 text-gray-300">
+                <tr>
+                    <th class="py-2 px-4 text-left">#</th>
+                    <th class="py-2 px-4 text-left">Tahun Akademik</th>
+                    <th class="py-2 px-4 text-left">Jenis Kelamin</th>
+                    <th class="py-2 px-4 text-left">Lama Tidur</th>
+                    <th class="py-2 px-4 text-left">Kesulitan Konsentrasi</th>
+                    <th class="py-2 px-4 text-left">Ketidakhadiran Kuliah</th>
+                    <th class="py-2 px-4 text-left">Perangkat Sebelum Tidur</th>
+                    <th class="py-2 px-4 text-left">Konsumsi Kafein</th>
+                    <th class="py-2 px-4 text-left">Olahraga</th>
+                    <th class="py-2 px-4 text-left">Tingkat Stres</th>
+                    <th class="py-2 px-4 text-left">Performa Akademik</th>
+                    <th class="py-2 px-4 text-left">Kategori Insomnia</th>
+                    <th class="py-2 px-4 text-left">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{-- data dummy --}}
+                <tr class="border-t border-gray-700 hover:bg-gray-800">
+                    <td class="py-2 px-4">1</td>
+                    <td class="py-2 px-4">2024/2025</td>
+                    <td class="py-2 px-4">Perempuan</td>
+                    <td class="py-2 px-4">5</td>
+                    <td class="py-2 px-4">Ya</td>
+                    <td class="py-2 px-4">3</td>
+                    <td class="py-2 px-4">Sering</td>
+                    <td class="py-2 px-4">Ya</td>
+                    <td class="py-2 px-4">Jarang</td>
+                    <td class="py-2 px-4">Tinggi</td>
+                    <td class="py-2 px-4">Cukup</td>
+                    <td class="py-2 px-4 text-red-400 font-semibold">Tinggi</td>
+                    <td class="py-2 px-4">
+                        <button class="text-blue-400 hover:underline">Edit</button>
+                        <button class="text-red-400 hover:underline ml-2">Hapus</button>
+                    </td>
+                </tr>
+                <tr class="border-t border-gray-700 hover:bg-gray-800">
+                    <td class="py-2 px-4">2</td>
+                    <td class="py-2 px-4">2023/2024</td>
+                    <td class="py-2 px-4">Laki-laki</td>
+                    <td class="py-2 px-4">7</td>
+                    <td class="py-2 px-4">Tidak</td>
+                    <td class="py-2 px-4">1</td>
+                    <td class="py-2 px-4">Kadang-kadang</td>
+                    <td class="py-2 px-4">Tidak</td>
+                    <td class="py-2 px-4">Rutin</td>
+                    <td class="py-2 px-4">Rendah</td>
+                    <td class="py-2 px-4">Baik</td>
+                    <td class="py-2 px-4 text-green-400 font-semibold">Rendah</td>
+                    <td class="py-2 px-4">
+                        <button class="text-blue-400 hover:underline">Edit</button>
+                        <button class="text-red-400 hover:underline ml-2">Hapus</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
     </div>
 </x-app-layout>
