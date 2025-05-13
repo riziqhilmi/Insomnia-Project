@@ -11,7 +11,7 @@
 <!-- Sidebar -->
 <div id="sidebar" class="fixed inset-y-0 left-0 bg-gradient-to-b from-gray-900 to-gray-800 text-white shadow-lg z-40 w-64 transition-all duration-300 flex flex-col">
     <div class="p-4 text-2xl font-extrabold text-blue-400 border-b border-gray-700">
-        <span id="brand-text" class="transition-all duration-300">INSOMNIC</span>
+        <span id="brand-text" class="transition-all duration-300">INSOMNIA</span>
     </div>
 
     <nav class="p-4 space-y-2 flex-1">
