@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
-
+use App\Http\Controllers\Auth\DataMasterController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,10 +57,6 @@ Route::get('/register', [RegisteredUserController::class, 'create'])
 
 Route::post('/register', [RegisteredUserController::class, 'store'])
     ->middleware('guest');
-
-Route::get('/master', function () {
-        return view('auth.master');
-    })->name('master');
     
 Route::get('/predision', function () {
         return view('auth.predision');
@@ -69,5 +65,7 @@ Route::get('/predision', function () {
 Route::get('/visualization', function () {
         return view('auth.visualization');
     })->name('visualization');
+
+Route::get('/master', [DataMasterController::class, 'index'])->name('master');
 
 require __DIR__.'/auth.php';
