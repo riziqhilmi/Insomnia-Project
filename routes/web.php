@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\DataMasterController;
+use App\Http\Controllers\DataMahasiswaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,11 +25,6 @@ Route::get('/', function () {
     return view('landing');
 })->name('landing');
 
-// Route yang membutuhkan autentikasi
-Route::middleware('auth')->get('/dashboard', function () {
-    return view('dashboard');
-});
-
 
 // Route untuk halaman login
 Route::get('/login', function () {
@@ -36,36 +32,18 @@ Route::get('/login', function () {
 })->name('login');
 
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // CRUD Data Mahasiswa
+    Route::resource('data-master', DataMahasiswaController::class)->parameters([
+        'data-master' => 'dataMahasiswa',
+    ]);
+    
 });
 
-Route::get('/register', function () {
-    return view('register');
-})->name('register');
 
-Route::get('/register', [RegisteredUserController::class, 'create'])
-    ->middleware('guest')
-    ->name('register');
-
-Route::post('/register', [RegisteredUserController::class, 'store'])
-    ->middleware('guest');
-    
-Route::get('/predision', function () {
-        return view('auth.predision');
-    })->name('predision');
-    
-Route::get('/visualization', function () {
-        return view('auth.visualization');
-    })->name('visualization');
-
-Route::get('/master', [DataMasterController::class, 'index'])->name('master');
 
 require __DIR__.'/auth.php';
