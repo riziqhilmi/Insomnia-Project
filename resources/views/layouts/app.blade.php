@@ -17,7 +17,7 @@
         <nav class="space-y-2">
             <a href="/dashboard" class="block p-2 rounded hover:bg-blue-700">Dashboard</a>
             <a href="/data-master" class="block p-2 rounded hover:bg-blue-700">Data Master</a>
-            <a href="/prediksi" class="block p-2 rounded hover:bg-blue-700">Prediksi</a>
+            <a href="/edukasi" class="block p-2 rounded hover:bg-blue-700">Edukasi</a>
             <a href="/visualisasi" class="block p-2 rounded hover:bg-blue-700">Visualisasi</a>
             <a href="/laporan" class="block p-2 rounded hover:bg-blue-700">Laporan</a>
         </nav>
@@ -29,5 +29,6 @@
     </div>
 </div>
 @yield('scripts')
+@stack('scripts')
 </body>
 </html>

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataMahasiswaController;
+use App\Http\Controllers\VisualController;
+use App\Http\Controllers\EdukasiController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,5 +21,13 @@ Route::middleware(['auth'])->group(function () {
         'data-master' => 'dataMahasiswa',
     ]);
 });
+
+
+Route::get('/visualisasi', [VisualController::class, 'index'])->name('visualisasi.index');
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('edukasi', EdukasiController::class);
+});
+
 
 require __DIR__.'/auth.php';

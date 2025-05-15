@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="mb-4 flex justify-between items-center">
-        <h2 class="text-2xl font-semibold text-blue-200">Data Mahasiswa</h2>
+        <h2 class="text-2xl font-semibold text-blue-200">Data Master</h2>
         <a href="{{ route('data-master.create') }}" class="mt-2 inline-block bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded">
             Tambah Data
         </a>

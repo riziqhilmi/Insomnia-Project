@@ -14,7 +14,7 @@ return new class extends Migration
     Schema::create('data_mahasiswa', function (Blueprint $table) {
         $table->id();
         $table->string('tahun_akademik');
-        $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
+        $table->enum('jenis_kelamin', ['Male', 'Female']);
         $table->string('lama_tidur');
         $table->string('kesulitan_konsentrasi');
         $table->string('ketidakhadiran_kuliah');
