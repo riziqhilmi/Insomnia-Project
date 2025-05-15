@@ -8,11 +8,21 @@ use Illuminate\Http\Request;
 class DataMahasiswaController extends Controller
 {
     // Tampilkan semua data
-    public function index()
-    {
-        $data = DataMahasiswa::latest()->paginate(10);
-        return view('data-master.index', compact('data'));
+    public function index(Request $request)
+{
+    $query = DataMahasiswa::query();
+
+    if ($request->has('search')) {
+        $search = $request->search;
+        $query->where('tahun_akademik', 'like', "%$search%")
+              ->orWhere('jenis_kelamin', 'like', "%$search%")
+              ->orWhere('kategori_insomnia', 'like', "%$search%");
     }
+
+    $data = $query->paginate(10); // paginate 10 per halaman
+
+    return view('data-master.index', compact('data'));
+}
 
     // Tampilkan form tambah data
     public function create()

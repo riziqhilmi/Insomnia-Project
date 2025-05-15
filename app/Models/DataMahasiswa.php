@@ -26,8 +26,5 @@ class DataMahasiswa extends Model
         'kategori_insomnia',
     ];
 
-    public function getRouteKeyName(){
-    return 'id'; // atau kunci primary lain jika bukan 'id'
-}
 
 }
