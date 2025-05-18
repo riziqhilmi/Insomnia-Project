@@ -1,7 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<h2 class="text-3xl font-semibold text-blue-300 mb-4">Dashboard</h2>
+<div id="main-content" class="relative transition-all duration-300 min-h-screen bg-gray-900 py-12 px-8 text-white">
+        <div class="bg-gray-800 p-6 rounded shadow-lg mb-6">
+            <h1 class="text-4xl font-bold text-blue-400 mb-2">Dashboard</h1>
+        </div>
 
 <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
     <div class="bg-slate-700 p-4 rounded shadow">
@@ -32,21 +35,21 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 const ctx = document.getElementById('insomniaChart').getContext('2d');
+
 new Chart(ctx, {
     type: 'bar',
     data: {
         labels: ['Tidak Insomnia', 'Risiko Insomnia', 'Insomnia'],
         datasets: [{
             label: 'Jumlah Mahasiswa',
-            data: [{{ $tidak }}, {{ $risiko }}, {{ $insomnia }}],
+            data: @json([$tidak, $risiko, $insomnia]),
             backgroundColor: ['#38bdf8', '#facc15', '#f87171'],
+            borderWidth: 1
         }]
     },
     options: {
         scales: {
-            y: {
-                beginAtZero: true
-            }
+            y: { beginAtZero: true }
         }
     }
 });

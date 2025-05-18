@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div id="main-content" class="relative transition-all duration-300 min-h-screen bg-gray-900 py-12 px-8 text-white">
 <div class="mb-4">
     <h2 class="text-2xl font-semibold text-blue-200">Visualisasi Data Mahasiswa</h2>
 
@@ -20,6 +21,7 @@
 <div class="bg-slate-700 p-4 rounded shadow mb-6">
     <canvas id="chart"></canvas>
 </div>
+    </div>
 @endsection
 
 @push('scripts')

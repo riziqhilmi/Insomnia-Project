@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div id="main-content" class="relative transition-all duration-300 min-h-screen bg-gray-900 py-12 px-8 text-white">
     <div class="mb-4 flex justify-between items-center">
         <h2 class="text-2xl font-semibold text-blue-200">Data Master</h2>
         <a href="{{ route('data-master.create') }}" class="mt-2 inline-block bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded">
@@ -53,5 +54,6 @@
         <div class="mt-4 text-white">
             {{ $data->withQueryString()->links() }}
         </div>
+    </div>
     </div>
 @endsection
