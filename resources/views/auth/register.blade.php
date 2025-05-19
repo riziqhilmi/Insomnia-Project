@@ -1,66 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
   <title>Register - Insomnic</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      color: white;
+    }
+
+    .moon-cloud {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 50%;
+      filter: blur(12px);
+      z-index: 2;
+      animation: floatCloud 40s ease-in-out infinite;
+    }
+
+    .moon-cloud1 {
+      top: 80px;
+      right: 80px;
+      width: 160px;
+      height: 60px;
+      animation-delay: 0s;
+    }
+
+    .moon-cloud2 {
+      top: 120px;
+      right: 130px;
+      width: 120px;
+      height: 50px;
+      animation-delay: 8s;
+    }
+
+    @keyframes floatCloud {
+      0%, 100% {
+        transform: translateX(0px);
+      }
+      50% {
+        transform: translateX(20px);
+      }
+    }
+
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: twinkle 2s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.2; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1.3); }
+    }
+
+    .moon {
+      position: absolute;
+      top: 60px;
+      right: 100px;
+      width: 100px;
+      height: 100px;
+      background: #f5f3ce;
+      border-radius: 50%;
+      box-shadow: 0 0 40px #fffacd;
+      z-index: 1;
+    }
+
+    .cloud {
+      position: absolute;
+      top: 90px;
+      right: -300px;
+      width: 300px;
+      height: 80px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 100px;
+      filter: blur(12px);
+      box-shadow:
+        60px 0 rgba(255, 255, 255, 0.05),
+        120px 0 rgba(255, 255, 255, 0.05),
+        180px 0 rgba(255, 255, 255, 0.05);
+      animation: moveCloud 60s linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes moveCloud {
+      0% { right: -300px; }
+      100% { right: 120%; }
+    }
+
+    .register-container {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .register-box {
+      background-color: rgba(10, 10, 25, 0.85);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(138, 180, 255, 0.2);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .register-box h1 {
+      margin-bottom: 10px;
+      font-size: 32px;
+      font-weight: 600;
+      color: #4a67ff;
+      text-align: center;
+    }
+
+    .register-box p {
+      text-align: center;
+      color: #aaa;
+      margin-bottom: 30px;
+    }
+
+    .register-box label {
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .register-box input {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #4c5f8a;
+      border-radius: 8px;
+      color: white;
+      outline: none;
+    }
+
+    .register-box input::placeholder {
+      color: #bbb;
+    }
+
+    .register-box button {
+      width: 100%;
+      padding: 12px;
+      background: #4a67ff;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s;
+    }
+
+    .register-box button:hover {
+      background: #374fc3;
+      transform: scale(1.02);
+    }
+
+    .register-box .options {
+      margin-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: #ccc;
+    }
+
+    .register-box .options a {
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    .register-box .options a:hover {
+      color: #4a67ff;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+      color: #aaa;
+      z-index: 2;
+    }
+  </style>
 </head>
-<body class="bg-gray-900 text-white flex items-center justify-center h-screen">
-  <div class="max-w-md w-full bg-gray-800 p-8 rounded-lg shadow-lg">
-    <div class="text-center mb-6">
-      <h1 class="text-4xl font-bold text-blue-500">Insomnic</h1>
-      <p class="mt-2 text-lg text-gray-400">Join and Solve Your Insom Problem</p>
-    </div>
+<body>
 
-    {{-- Tampilkan error validasi --}}
-    @if ($errors->any())
-      <div class="mb-4 text-red-400">
-        <ul>
-          @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-          @endforeach
-        </ul>
-      </div>
-    @endif
+  <div class="moon"></div>
+  <div class="moon-cloud moon-cloud1"></div>
+  <div class="moon-cloud moon-cloud2"></div>
+  <div class="stars" id="stars"></div>
+  <div class="cloud"></div>
 
-    <form method="POST" action="{{ route('register') }}">
-      @csrf
+  <div class="register-container">
+    <div class="register-box">
+      <h1>Insomnic</h1>
+      <p>Join and Solve Your Insom Problem</p>
 
-      <div class="mb-4">
-        <label for="name" class="block text-sm font-medium text-gray-300">Name</label>
-        <input type="text" name="name" id="name" required
-          class="mt-2 p-3 w-full rounded-md bg-gray-700 text-gray-300" placeholder="Your name">
-      </div>
-
-      <div class="mb-4">
-        <label for="email" class="block text-sm font-medium text-gray-300">Email</label>
-        <input type="email" name="email" id="email" required
-          class="mt-2 p-3 w-full rounded-md bg-gray-700 text-gray-300" placeholder="you@example.com">
-      </div>
-
-      <div class="mb-4">
-        <label for="password" class="block text-sm font-medium text-gray-300">Password</label>
-        <input type="password" name="password" id="password" required
-          class="mt-2 p-3 w-full rounded-md bg-gray-700 text-gray-300" placeholder="********">
-      </div>
-
-      <div class="mb-6">
-        <label for="password_confirmation" class="block text-sm font-medium text-gray-300">Confirm Password</label>
-        <input type="password" name="password_confirmation" id="password_confirmation" required
-          class="mt-2 p-3 w-full rounded-md bg-gray-700 text-gray-300" placeholder="********">
-      </div>
-
-      <button type="submit"
-        class="w-full py-3 bg-blue-500 hover:bg-blue-600 rounded-md text-white font-semibold">
-        Register
-      </button>
-
-      <div class="mt-4 text-sm text-gray-400 text-center">
-        Already have an account?
-        <a href="{{ route('login') }}" class="text-blue-500 hover:underline">Login</a>
-      </div>
-    </form>
+      <!-- Tampilkan error validasi -->
+      @if ($errors->any())
+  <div style="
+    background-color: rgba(255, 0, 0, 0.1);
+    color: #b00000;
+    border: 1px solid #b00000;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    font-size: 0.75rem;
+    line-height: 1.4;
+  ">
+    <strong style="display: block; margin-bottom: 4px;">⚠️ Please fix the following:</strong>
+    <ul style="padding-left: 18px; margin: 0;">
+      @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+    </ul>
   </div>
+@endif
+
+
+      <form method="POST" action="{{ route('register') }}">
+        @csrf
+
+        <label for="name">Name</label>
+        <input 
+          type="text" 
+          id="name" 
+          name="name" 
+          placeholder="Your name" 
+          required 
+        />
+
+        <label for="email">Email</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          placeholder="you@example.com" 
+          required 
+        />
+
+        <label for="password">Password</label>
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          placeholder="********" 
+          required 
+        />
+
+        <label for="password_confirmation">Confirm Password</label>
+        <input 
+          type="password" 
+          id="password_confirmation" 
+          name="password_confirmation" 
+          placeholder="********" 
+          required 
+        />
+
+        <button type="submit">Register</button>
+
+        <div class="w-full flex justify-center mt-4 text-sm">
+  <a href="{{ route('login') }}" class="text-blue-500 hover:underline text-center">
+    Already have an account? Login
+  </a>
+</div>
+
+      </form>
+    </div>
+  </div>
+
+
+  <script>
+    const starContainer = document.getElementById('stars');
+    for (let i = 0; i < 120; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      const size = Math.random() * 2 + 1;
+      star.style.width = `${size}px`;
+      star.style.height = `${size}px`;
+      star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+      starContainer.appendChild(star);
+    }
+  </script>
+
 </body>
 </html>

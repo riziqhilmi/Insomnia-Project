@@ -51,9 +51,14 @@
         </table>
 
         {{-- Pagination --}}
-        <div class="mt-4 text-white">
-            {{ $data->withQueryString()->links() }}
-        </div>
+<div class="mt-4 flex flex-col items-center text-white space-y-2">
+    <div>
+        {{ $data->withQueryString()->links() }}
+    </div>
+    <div class="text-sm text-blue-300">
+        Showing {{ $data->firstItem() }} to {{ $data->lastItem() }} of {{ $data->total() }} results
+    </div>
+</div>
     </div>
     </div>
 @endsection

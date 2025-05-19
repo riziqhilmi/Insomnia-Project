@@ -65,6 +65,23 @@
                 <span class="sidebar-text">Laporan</span>
             </a>
         </nav>
+        <div class="p-4 border-t border-gray-700 mt-auto relative">
+    <button onclick="toggleUserMenu()" class="w-full flex items-center justify-between px-4 py-2 text-sm font-medium bg-gray-900 text-blue-200 rounded hover:bg-gray-700 focus:outline-none">
+        <span>{{ Auth::user()->name }}</span>
+        <svg class="w-4 h-4 ml-2 transform transition-transform duration-200" id="user-menu-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M19 9l-7 7-7-7" />
+        </svg>
+    </button>
+
+    <div id="user-menu" class="absolute bottom-14 left-4 w-[calc(100%-2rem)] bg-gray-800 border border-gray-700 rounded shadow-lg hidden z-50">
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700">
+                Logout
+            </button>
+        </form>
+    </div>
+</div>
     </div>
 
     <!-- Main Content -->
@@ -72,6 +89,26 @@
         @yield('content')
     </div>
 </div>
+
+<script>
+    function toggleUserMenu() {
+        const menu = document.getElementById('user-menu');
+        const icon = document.getElementById('user-menu-icon');
+        const isHidden = menu.classList.contains('hidden');
+
+        menu.classList.toggle('hidden');
+        icon.classList.toggle('rotate-180');
+
+        // Close on outside click
+        document.addEventListener('click', function closeMenu(e) {
+            if (!menu.contains(e.target) && !e.target.closest('button[onclick="toggleUserMenu()"]')) {
+                menu.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+                document.removeEventListener('click', closeMenu);
+            }
+        });
+    }
+</script>
 @yield('scripts')
 @stack('scripts')
 </body>
