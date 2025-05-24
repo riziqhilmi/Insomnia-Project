@@ -9,6 +9,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -31,14 +33,34 @@ class AuthenticatedSessionController extends Controller
 }
 
 
-    public function store(LoginRequest $request): RedirectResponse
-    {
-        $request->authenticate();
+public function store(Request $request)
+{
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
 
-        $request->session()->regenerate();
+    $user = User::where('email', $request->email)->first();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+    if (!$user || !Hash::check($request->password, $user->password)) {
+        return back()->withErrors([
+            'email' => 'Email atau password salah.',
+        ]);
     }
+
+    // ❗ Tambahkan validasi is_admin
+    if (!$user->is_admin) {
+        return back()->withErrors([
+            'email' => 'Anda tidak memiliki akses ke sistem ini.',
+        ]);
+    }
+
+    Auth::login($user, $request->boolean('remember'));
+
+    $request->session()->regenerate();
+
+    return redirect()->intended(RouteServiceProvider::HOME);
+}
 
     /**
      * Destroy an authenticated session.

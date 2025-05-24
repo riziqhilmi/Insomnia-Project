@@ -19,7 +19,7 @@
         <table class="min-w-full text-sm text-blue-100">
             <thead class="bg-gray-800 uppercase text-xs text-blue-300">
                 <tr>
-                    <th class="px-6 py-3 text-left">#</th>
+                    <th class="px-6 py-3 text-left">No</th>
                     <th class="px-6 py-3 text-left">Judul</th>
                     <th class="px-6 py-3 text-left">Kategori</th>
                     <th class="px-6 py-3 text-left">Aksi</th>
