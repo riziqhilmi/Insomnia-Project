@@ -60,9 +60,9 @@
             </a>
 
             <!-- Laporan menu with consistent style -->
-            <a href="/laporan" class="flex items-center space-x-3 px-4 py-2 rounded hover:bg-gray-700 transition-colors {{ Route::is('laporan') ? 'bg-gray-800' : '' }}">
+            <a href="/predict" class="flex items-center space-x-3 px-4 py-2 rounded hover:bg-gray-700 transition-colors {{ Route::is('laporan') ? 'bg-gray-800' : '' }}">
                 <svg class="w-5 h-5 text-blue-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 4h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2zm3 4h8m-8 4h8m-8 4h4" /></svg>
-                <span class="sidebar-text">Laporan</span>
+                <span class="sidebar-text">Hasil Prediksi</span>
             </a>
         </nav>
         <div class="p-4 border-t border-gray-700 mt-auto relative">

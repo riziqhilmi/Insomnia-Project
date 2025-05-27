@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataMahasiswaController;
 use App\Http\Controllers\VisualController;
 use App\Http\Controllers\EdukasiController;
+use App\Http\Controllers\PredictionController; // Tambahkan ini
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -15,6 +16,7 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
+
 Route::post('/login', function (Request $request) {
     $credentials = $request->only('email', 'password');
 
@@ -26,7 +28,7 @@ Route::post('/login', function (Request $request) {
     return back()->withErrors([
         'email' => 'Email atau password salah.',
     ])->withInput();
-    });
+});
 
 Route::post('/logout', function (Request $request) {
     Auth::logout();
@@ -35,24 +37,28 @@ Route::post('/logout', function (Request $request) {
     return redirect('/');
 })->name('logout');
 
-
-
 Route::middleware(['auth'])->group(function () {
+    // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
+    
+    // Data Master
     Route::resource('data-master', DataMahasiswaController::class)->parameters([
         'data-master' => 'dataMahasiswa',
     ]);
-});
-
-
-
-Route::get('/visualisasi', [VisualController::class, 'index'])->name('visualisasi.index');
-
-Route::middleware(['auth'])->group(function () {
+    
+    // Edukasi
     Route::resource('edukasi', EdukasiController::class);
+    
+    // Visualisasi
+    Route::get('/visualisasi', [VisualController::class, 'index'])->name('visualisasi.index');
+    
+    // Prediksi Insomnia - Tambahkan ini
+    Route::prefix('predictions')->group(function () {
+        Route::get('/', [PredictionController::class, 'index'])->name('predictions.index');
+        Route::get('/{prediction}', [PredictionController::class, 'show'])->name('predictions.show');
+    });
+    
+    
 });
-
-
 
 require __DIR__.'/auth.php';
