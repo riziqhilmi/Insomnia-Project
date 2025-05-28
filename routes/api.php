@@ -23,5 +23,5 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->get('/me', [AuthController::class, 'me']);
 
-Route::post('/predictions', [PredictionController::class, 'storeFromFlask']);
+Route::post('/predictions', action: [PredictionController::class, 'storeFromFlask']);
 

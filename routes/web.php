@@ -8,6 +8,7 @@ use App\Http\Controllers\PredictionController; // Tambahkan ini
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Controllers\PredictionResultController;
 
 Route::get('/', function () {
     return view('landing');
@@ -52,11 +53,10 @@ Route::middleware(['auth'])->group(function () {
     // Visualisasi
     Route::get('/visualisasi', [VisualController::class, 'index'])->name('visualisasi.index');
     
-    // Prediksi Insomnia - Tambahkan ini
-    Route::prefix('predictions')->group(function () {
-        Route::get('/', [PredictionController::class, 'index'])->name('predictions.index');
-        Route::get('/{prediction}', [PredictionController::class, 'show'])->name('predictions.show');
-    });
+    Route::resource('predict', PredictionResultController::class)->except(['show']);
+
+
+
     
     
 });
