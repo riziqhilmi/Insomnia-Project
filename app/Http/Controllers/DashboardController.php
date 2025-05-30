@@ -1,18 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\DataMahasiswa;
+
 use Illuminate\Http\Request;
+use App\Models\PredictionResult;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $total = DataMahasiswa::count();
-        $tidak = DataMahasiswa::where('kategori_insomnia', 0)->count();
-        $risiko = DataMahasiswa::whereIn('kategori_insomnia', [1])->count();
-        $insomnia = DataMahasiswa::where('kategori_insomnia', 2)->count();
+        $total = PredictionResult::count();
+        $tidak = PredictionResult::where('prediction_label', 'Tidak ada insomnia')->count();
+        $risiko = PredictionResult::where('prediction_label', 'Risiko Insomnia')->count();
+        $insomnia = PredictionResult::where('prediction_label', 'Insomnia')->count();
 
-        return view('dashboard', compact('total', 'tidak', 'risiko', 'insomnia'));
+        $recent = PredictionResult::latest()->take(5)->get();
+
+        return view('dashboard', compact('total', 'tidak', 'risiko', 'insomnia', 'recent'));
     }
 }

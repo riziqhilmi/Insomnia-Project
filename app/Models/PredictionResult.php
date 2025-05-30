@@ -10,6 +10,9 @@ class PredictionResult extends Model
         'user_id', 'prediction_result', 'prediction_label',
         'input_json', 'mapped_json', 'created_at'
     ];
+    protected $casts = [
+        'created_at' => 'datetime',
+    ];
 
     public $timestamps = false;
 }
