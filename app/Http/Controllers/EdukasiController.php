@@ -52,4 +52,6 @@ class EdukasiController extends Controller
 
         return redirect()->route('edukasi.index')->with('success', 'Konten edukasi berhasil dihapus.');
     }
+
+    
 }

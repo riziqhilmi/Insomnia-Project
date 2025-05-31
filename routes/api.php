@@ -25,3 +25,5 @@ Route::middleware('auth:sanctum')->get('/me', [AuthController::class, 'me']);
 
 Route::post('/predictions', action: [PredictionController::class, 'storeFromFlask']);
 
+
+

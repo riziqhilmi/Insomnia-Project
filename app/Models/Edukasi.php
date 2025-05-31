@@ -14,8 +14,8 @@ class Edukasi extends Model
     protected $fillable = [
         'judul',
         'konten',
-        'kategori', // opsional: seperti 'Tips Tidur', 'Pola Hidup Sehat', dll
-        'sumber',   // opsional: sumber artikel
-        'gambar',
+        'kategori', 
+        'sumber',   
+        
     ];
 }
